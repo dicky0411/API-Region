@@ -17,4 +17,14 @@ class IPController extends Controller
         // Optionally, you can return the result as a JSON response
         return response()->json($result);
     }
+    public function show(Request $request, $ip = null)
+    {
+        
+        $ip2region = new Ip2Region();
+        $result = $ip2region->simple($ip);
+        return view('welcome', [
+            "message" => $result,
+            "IP" => $ip
+        ]);
+    }
 }
